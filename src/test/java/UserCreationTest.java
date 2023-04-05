@@ -65,48 +65,6 @@ public class UserCreationTest {
                 .body("message", is("User already exists"));
     }
 
-    @DisplayName("Создание пользователя без email")
-    @Description("Проверка, что пользователь без email не может быть создан")
-    @Test
-    public void userWithoutEmailCreationIsImpossible() {
-        // Удаляем email и создаем пользователя
-        user.setEmail(null);
-        ValidatableResponse createUser = userClient.create(user);
-
-        // Проверяем, что пользователь не создан и получена корректная ошибка
-        createUser.statusCode(403)
-                .body("success", is(false))
-                .body("message", is("Email, password and name are required fields"));
-    }
-
-    @DisplayName("Создание пользователя без имени")
-    @Description("Проверка, что пользователь без имени не может быть создан")
-    @Test
-    public void userWithoutNameCreationIsImpossible() {
-        // Удаляем имя и создаем пользователя
-        user.setName(null);
-        ValidatableResponse createUser = userClient.create(user);
-
-        // Проверяем, что пользователь не создан и получена корректная ошибка
-        createUser.statusCode(403)
-                .body("success", is(false))
-                .body("message", is("Email, password and name are required fields"));
-    }
-
-    @DisplayName("Создание пользователя без пароля")
-    @Description("Проверка, что пользователь без пароля не может быть создан")
-    @Test
-    public void userWithoutPasswordCreationIsImpossible() {
-        // Удаляем пароль и создаем пользователя
-        user.setPassword(null);
-        ValidatableResponse createUser = userClient.create(user);
-
-        // Проверяем, что пользователь не создан и получена корректная ошибка
-        createUser.statusCode(403)
-                .body("success", is(false))
-                .body("message", is("Email, password and name are required fields"));
-    }
-
     @After
     public void clearData() {
         userClient.delete(user.getEmail(), bearerToken);

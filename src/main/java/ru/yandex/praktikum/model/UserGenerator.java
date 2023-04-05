@@ -2,13 +2,23 @@ package ru.yandex.praktikum.model;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.util.Locale;
-
 public class UserGenerator {
     public static User getRandom() {
-        String email = RandomStringUtils.randomAlphabetic(10).toLowerCase(Locale.ROOT) + "@yandex.ru";
-        String password = RandomStringUtils.randomAlphabetic(10).toLowerCase();
-        String name = RandomStringUtils.randomAlphabetic(10).toLowerCase(Locale.ROOT);
+        String email = getRandomEmail();
+        String password = getRandomPassword();
+        String name = getRandomName();
         return new User(email, password, name);
+    }
+
+    public static String getRandomEmail() {
+        return RandomStringUtils.randomAlphabetic(10).toLowerCase() + "@yandex.ru";
+    }
+
+    public static String getRandomPassword() {
+        return RandomStringUtils.randomAlphabetic(10).toLowerCase();
+    }
+
+    public static String getRandomName() {
+        return RandomStringUtils.randomAlphabetic(10).toLowerCase();
     }
 }
