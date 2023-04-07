@@ -36,7 +36,7 @@ public class UserClient extends BurgerRestClient {
                 .when().patch(USER_URI + "/user").then();
     }
 
-    @Step("Delete courier by email {email}")
+    @Step("Delete user by email {email}")
     public void delete(String email, String bearerToken) {
         String json = String.format("{\"email\": \"%s\"}", email);
 
